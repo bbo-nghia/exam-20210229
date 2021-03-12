@@ -1,0 +1,1 @@
+SELECT email FROM `exam-20210312`.person GROUP BY email HAVING COUNT(*) > 1;

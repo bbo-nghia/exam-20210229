@@ -1,0 +1,10 @@
+select customers.*
+from (select customer_id, sum(case when product_name = 'A' then 1 else 0 end) as product_a, sum(case when product_name = 'B' then 1 else 0 end) as product_b
+    from orders
+    group by customer_id) as t inner join customers
+on t.customer_id = customers.customer_id
+where t.product_a>0 and product_b >0 and customers.customer_id not in (
+    select distinct customer_id
+    from orders
+    where product_name = 'C')
+order by customers.customer_idSELECT email FROM `exam-20210312`.person GROUP BY email HAVING COUNT(*) > 1;
